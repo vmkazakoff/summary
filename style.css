@@ -1,0 +1,64 @@
+.container {
+	width: 100%;
+}
+
+.scored {
+	cursor: default;
+}
+.scored .score {
+	color: #ddd;
+}
+blockquote.otherMessages {
+    border-left: 5px solid #cfd8dc;
+}
+#showScoredMessagesLabel label,
+#showOtherMessagesLabel label {
+	font-size: 1rem;
+}
+
+
+.stopWord {
+	color: #ddd;
+}
+.word > sup {
+	display: none;
+}
+.word:hover > sup {
+	display: inline;
+}
+
+.scored.scored-0 {
+	background-color: #eeeeee
+}
+.scored.scored-1 {
+	background-color: #ffcc80
+}
+.scored.scored-2 {
+	background-color: #ff9800
+}
+.scored.scored-3 {
+	background-color: #ef6c00
+}
+
+
+.chip .chip-counter {
+    float: left;
+    background-color: rgba(255,255,255,0.5);
+    margin: 0 8px 0 -12px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    text-align: center;
+}
+.chip .chip-btn {
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    line-height: 32px;
+    padding-left: 8px;
+}
+
+.collapsible-body {
+	overflow: hidden;
+	padding: 1rem .2rem;
+}
