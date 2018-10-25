@@ -16,6 +16,9 @@ blockquote.otherMessages {
 	font-size: 1rem;
 }
 
+.hidden {
+	display: none;
+}
 
 .stopWord {
 	color: #ddd;
@@ -40,6 +43,16 @@ blockquote.otherMessages {
 	background-color: #ef6c00
 }
 
+/* скрываем пока не загрузится */
+.container {
+	display: none;
+}
+.preloader-wrapper.active {
+	z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
 
 .chip .chip-counter {
     float: left;
