@@ -1,7 +1,9 @@
 .container {
 	width: 100%;
 }
-
+.custom_logo {
+	font-weight: 600;
+}
 .scored {
 	cursor: default;
 }
