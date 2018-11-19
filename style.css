@@ -17,9 +17,56 @@ blockquote.otherMessages {
 #showOtherMessagesLabel label {
 	font-size: 1rem;
 }
-
+.nooverflow {
+	overflow: hidden;
+}
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+}
+.pleft {
+	left: 0;
+}
+.pright {
+	right: 0;
+}
 .hidden {
 	display: none;
+}
+.text-small {
+	font-size: .8rem;
+}
+.scale-transition-ease {
+    transition: transform 0.3s ease-in-out !important;
+}
+.scale-transition.scale-out {
+	height: 0px;
+	overflow: hidden;
+}
+.readmore:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 6px;
+    border-top: 1px dotted #ddd;
+}
+.readmore {
+    position: relative;
+    text-align: center;
+    display: block;
+    font-size: 10px;
+    color: #ddd;
+}
+.readmore span {
+	background: #fff;
+    padding: 0 10px;
+    border: 1px dotted;
+    border-radius: 10px;
 }
 
 .stopWord {
@@ -45,7 +92,7 @@ blockquote.otherMessages {
 	background-color: #ef6c00
 }
 
-/* скрываем пока не загрузится */
+/* скрываем пока не загрузится 
 .container {
 	display: none;
 }
@@ -55,6 +102,7 @@ blockquote.otherMessages {
     top: 50%;
     left: 50%;
 }
+*/
 
 .chip .chip-counter {
     float: left;
@@ -65,15 +113,28 @@ blockquote.otherMessages {
     border-radius: 50%;
     text-align: center;
 }
-.chip .chip-btn {
-    cursor: pointer;
-    float: right;
-    font-size: 16px;
+.chip i.material-icons {
     line-height: 32px;
-    padding-left: 8px;
 }
 
 .collapsible-body {
 	overflow: hidden;
 	padding: 1rem .2rem;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    display: inline-block;
+}
+
+textarea {
+    overflow-y: scroll !important; 
+    height: 20rem !important;
 }
