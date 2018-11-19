@@ -138,3 +138,15 @@ textarea {
     overflow-y: scroll !important; 
     height: 20rem !important;
 }
+
+.collapsibleInModal {
+	height: 80%;
+	max-height: 80%;
+}
+.collapsibleInModal .collapsible {
+	margin: 0;
+	box-shadow: none;
+}
+.collapsibleInModal.modal .modal-content {
+	padding: 0;
+}
