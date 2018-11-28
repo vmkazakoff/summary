@@ -10,166 +10,225 @@
 		<!--Import materialize.css-->
 		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script type="text/javascript" src="jQuery.min.js"></script>
 		
 	</head>
 	
-	<body class="not_flow-text">
+	<body class="not_flow-text grey lighten-5">
 		
+						<!-- 
 
-		<div class="navbar-fixed">
-			<nav class="nav-extended">
-				<div class="nav-content">
-					<ul class="tabs tabs-transparent">
-						<li class="tab"><a id="tabSelect1" href="#tab1" class="active">Исходный текст <span class="new badge red" data-badge-caption="" id="inputReadTime">0 минут</span></a></li>
-						<li class="tab"><a id="tabSelect2" href="#tab2">Саммари <span class="new badge red" data-badge-caption="" id="resultReadTime">0 минут</span></a></li>
-						<li class="tab right disabled custom_logo"><a href="#tab8" class="white-text">#текстовыжималка [beta]</a></li>
-						
-					</ul>
-				</div>
-			</nav>
-		</div>
+							<span class="new badge red" data-badge-caption="" id="resultReadTime">0 минут</span> 
+							
+							<div class="center-align">
+								<a class="btn-large tab" onclick="summaryze_main(); document.getElementById('tabSelect2').click();">
+									Получить саммари
+									<i class="material-icons right">send</i>
+								</a>
+							</div>
 
+					    <div class="grey lighten-5">
+					      <a href="#!" onclick="summaryze_prepare();" class="waves-effect waves-green btn-flat"> ключевые</a>
+					      <a href="#!" onclick="printMessagesArayWithScores(); document.getElementById('tabSelect2').click();" class="modal-close waves-effect waves-green btn-flat"> саммари</a>
+					    </div>
 
-
-		<!-- КНОПКА НАСТРОЕК -->
-		<div id="" class="fixed-action-btn">
-		  <a class="btn-floating btn-large red modal-trigger" href="#settingsModal">
-		    <i class="large material-icons">settings</i>
-		  </a>
-		</div>
+						-->
 
 
+		<div class="navigation bottom">
+
+      <ul class="collapsible" data-collapsible="accordion">
+		    <li>
+		      <div class="collapsible-header grey lighten-4 valign-wrapper">
+		      	<i class="large material-icons black-text" style="transform: rotate(270deg);">filter_list</i>
+		      	<span href="#" class="brand-logo center custom_logo black-text">текстовыжималка</span>
+		      	<span class="new badge red" data-badge-caption="" id="resultReadTime" style="margin-left: 10px;">0 минут</span>
+					  <a class="btn-floating btn-large white">
+					    <i class="large material-icons black-text opened">close</i>
+					    <i class="large material-icons black-text closed">settings</i>
+					  </a>
+
+		      </div>
+		      <div class="collapsible-body  grey lighten-5 settings">
+
+							<div class="col s12 hight460">
+
+								<ul class="collapsible noborder noshadow">
+									<li>
+										<div class="collapsible-header valign-wrapper">
+							      	<i class="material-icons">attach_file</i>Исходный текст 
+							      	<span class="new badge red" data-badge-caption="" id="inputReadTime">0 минут</span>
+							      </div>
+										<div class="collapsible-body">
+											<div class="col s12 valign-wrapper relative">					
+												<input type="file" class="inputfile " id="inputfile">
+												<label for="inputfile" class="waves-effect waves-light btn">
+													<span>Загрузи файл (.txt)</span>
+													<i class="material-icons right">cloud</i>
+												</label>
+												<div class="switch absolute pright" >
+											    <label>
+											      текст
+											      <input type="checkbox" id="textTypeSwitch">
+											      <span class="lever"></span>
+											      чат
+											    </label>
+											  </div>
+											</div>
+									    <div class="col s12">
+									      <div class="card ">
+									        <div class="card-content no-overflow" >
+									          <div class="input-field">
+															<textarea id="input" placeholder="Место для гениального текста" class="materialize-textarea"></textarea>
+															<label for="input">Или скопируй и вставь сюда</label>
+														</div>
+									        </div>
+									      </div>
+									    </div>	
+								    </div>	
+									</li>
 
 
-		<!-- МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
-		<div id="settingsModal" class="modal modal-fixed-footer NOT_bottom-sheet collapsibleInModal">
 
-	    <div class="modal-content">
-				<div class="col s12">
-					<ul class="collapsible">
 
-						<li class="active">
-				      <div class="collapsible-header"><i class="material-icons">settings</i>Настройки поиска похожих слов</div>
-				      <div class="collapsible-body">
-								<div class="row">
-									<div class="col s12 flow-text">
-										
-										<div class="input-field col s12">
-											<p>
-									      <label>
-									        <input type="checkbox" class="filled-in" checked="checked" disabled="disabled" />
-									        <span>Использовать фонетический алгоритм</span>
-									      </label>
-									    </p>
-									    <p>
-									      <label>
-									        <input type="checkbox" class="filled-in" checked="checked" disabled="disabled" />
-									        <span>Использовать алгоритм n-gram</span>
-									      </label>
-									    </p>
-									    <p>
-									      <label>
-									        <input type="checkbox" class="filled-in" disabled="disabled" />
-									        <span>Использовать стемминг слов (PRO, в разработке)</span>
-									      </label>
-									    </p>
-									    <p>
-									      <label>
-									        <input type="checkbox" class="filled-in" disabled="disabled" />
-									        <span>Использовать лемматизацию (PRO, в разработке)</span>
-									      </label>
-									    </p>
-								  	</div>
-						        <div class="input-field col s12 m4">
-						          <i class="material-icons prefix">sort_by_alpha</i>
-						          <input id="phoneticCodeLenght" type="text" class="validate" value="4" type="number">
-						          <label for="phoneticCodeLenght">Фонетический код</label>
-						        </div>
-						        <div class="input-field col s12 m4">
-						          <i class="material-icons prefix">settings_ethernet</i>
-						          <input id="nGramCodeLenght" type="tel" class="validate" value="3" type="number">
-						          <label for="nGramCodeLenght">Н-грама</label>
-						        </div>
-						        <div class="input-field col s12 m4">
-						          <i class="material-icons prefix">tonality</i>
-						          <input id="nGramSimilarity" type="tel" class="validate" value="10" type="number" min="0" max="100">
-						          <label for="nGramSimilarity">Соотвествие н-грамы</label>
-						        </div>
-							    </div>
+							    <li>
+							      <div class="collapsible-header valign-wrapper">
+							      	<i class="material-icons">code</i>Ключевые слова 
+							      	<span id="keyWordsCounter" class="new badge" data-badge-caption="">0 слов</span>
+							      </div>
+							      <div class="collapsible-body">
+							      	<div class="row">
+												<div class="input-field col s12" style="display:none;">
+													<textarea id="keyWordsList" class="materialize-textarea"></textarea>
+												</div>
 
-								</div>
-
-				      </div>
-				    </li>
-
-				    <li>
-				      <div class="collapsible-header valign-wrapper">
-				      	<i class="material-icons">code</i>Ключевые слова 
-				      	<span id="keyWordsCounter" class="new badge" data-badge-caption="">0</span>
-				      </div>
-				      <div class="collapsible-body">
-								<div class="input-field col s12" style="display:none;">
-									<textarea id="keyWordsList" class="materialize-textarea"></textarea>
-								</div>
-
-								<div class="col s12 flow-text">
-
-									<!--<div class="row">
-								    <div class="col s12">
-								      <div class="row">
 								        <div class="input-field col s12">
 								          <i class="material-icons prefix">textsms</i>
 								          <input type="text" id="autocompleteWords" class="autocomplete">
-								          <label for="autocomplete-input">Поиск ключевых слов и смысла (PRO, в разработке)</label>
+								          <label for="autocomplete-input">Поиск ключевых слов (PRO, в разработке)</label>
 								        </div>
-								      </div>
-								    </div>
-								  </div>-->
 
-									<div id="keyWords">
-										<span class="text-small">Пока тут пусто</span>
-									</div>
+												<div class="col s12 flow-text">
 
-								</div>
+													<div id="keyWords">
+														<span class="text-small">Сначала надо загрузить текст</span>
+													</div>
 
-				      </div>
-				    </li>
+												</div>
+											</div>
 
-				    <li>
-				      <div class="collapsible-header valign-wrapper">
-				      	<i class="material-icons">code</i>Все слова 
-				      	<span id="allWordsCounter" class="new badge" data-badge-caption="">0</span>
-				      </div>
-				      <div class="collapsible-body">
-				      		<div id="allWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
-				      </div>
-				    </li>
+							      </div>
+							    </li>
 
-				    <li>
-				      <div class="collapsible-header valign-wrapper">
-				      	<i class="material-icons">code</i>Cтоп-слова 
-				      	<span id="stopWordsCounter" class="new badge" data-badge-caption="">0</span>
-				      </div>
-				      <div class="collapsible-body">
-								<div class="input-field col s12" style="display:none;">
-									<textarea id="stopWordsList" class="materialize-textarea">как я ты мы вы они так что же а но в и о об про на под во или из когда их мы я они вы если еще за к на с co по это чат то та той для все всё вас не уже еще до вот его при у как бы чтобы либо вам где от есть надо над можно чем зачем чему кто нас наш нашу наша наши наше нам нами только меня вообще буду будут т д этот эту себе себя он ну тд тут тем там тех будто будь будет само сама сами сам самым мне https http www такое такой такую вовсе такого такие таки этак свою свое свои такая которые которое которую которая</textarea>
-								</div>
-								<div id="stopWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
-				      </div>
-				    </li>
+							    <li class="">
+							      <div class="collapsible-header"><i class="material-icons">settings</i>Настройки поиска похожих слов</div>
+							      <div class="collapsible-body">
+											<div class="row">
+												<div class="col s12 flow-text">
+													
+													<div class="input-field col s12">
+														<p>
+												      <label>
+												        <input type="checkbox" class="filled-in" checked="checked" disabled="disabled" />
+												        <span>Использовать фонетический алгоритм</span>
+												      </label>
+												    </p>
+												    <p>
+												      <label>
+												        <input type="checkbox" class="filled-in" checked="checked" disabled="disabled" />
+												        <span>Использовать алгоритм n-gram</span>
+												      </label>
+												    </p>
+												    <p>
+												      <label>
+												        <input type="checkbox" class="filled-in" disabled="disabled" />
+												        <span>Использовать стемминг слов (PRO, в разработке)</span>
+												      </label>
+												    </p>
+												    <p>
+												      <label>
+												        <input type="checkbox" class="filled-in" disabled="disabled" />
+												        <span>Использовать лемматизацию (PRO, в разработке)</span>
+												      </label>
+												    </p>
+											  	</div>
+									        <div class="input-field col s12 m4">
+									          <i class="material-icons prefix">sort_by_alpha</i>
+									          <input id="phoneticCodeLenght" type="text" class="validate" value="4" type="number">
+									          <label for="phoneticCodeLenght">Фонетический код</label>
+									        </div>
+									        <div class="input-field col s12 m4">
+									          <i class="material-icons prefix">settings_ethernet</i>
+									          <input id="nGramCodeLenght" type="tel" class="validate" value="3" type="number">
+									          <label for="nGramCodeLenght">Н-грама</label>
+									        </div>
+									        <div class="input-field col s12 m4">
+									          <i class="material-icons prefix">tonality</i>
+									          <input id="nGramSimilarity" type="tel" class="validate" value="10" type="number" min="0" max="100">
+									          <label for="nGramSimilarity">Соотвествие н-грамы</label>
+									        </div>
+										    </div>
 
-					</ul>
-				</div>
-	    </div> 
+											</div>
 
-	    <div class="modal-footer">
-	      <a href="#!" onclick="summaryze_prepare();" class="waves-effect waves-green btn-flat">Обновить ключевые слова</a>
-	      <a href="#!" onclick="printMessagesArayWithScores(); document.getElementById('tabSelect2').click();" class="modal-close waves-effect waves-green btn-flat">Обновить саммари</a>
-	    </div>
+							      </div>
+							    </li>
 
-	  </div> 
-	  <!-- /МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
+
+							    <li class="hidden">
+							      <div class="collapsible-header valign-wrapper">
+							      	<i class="material-icons">code</i>Все слова 
+							      	<span id="allWordsCounter" class="new badge" data-badge-caption="">0</span>
+							      </div>
+							      <div class="collapsible-body">
+							      		<div id="allWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
+							      </div>
+							    </li>
+
+							    <li class="hidden">
+							      <div class="collapsible-header valign-wrapper">
+							      	<i class="material-icons">code</i>Cтоп-слова 
+							      	<span id="stopWordsCounter" class="new badge" data-badge-caption="">0</span>
+							      </div>
+							      <div class="collapsible-body">
+											<div class="input-field col s12" style="display:none;">
+												<textarea id="stopWordsList" class="materialize-textarea">как я ты мы вы они так что же а но в и о об про на под во или из когда их мы я они вы если еще за к на с co по это чат то та той для все всё вас не уже еще до вот его при у как бы чтобы либо вам где от есть надо над можно чем зачем чему кто нас наш нашу наша наши наше нам нами только меня вообще буду будут т д этот эту себе себя он ну тд тут тем там тех будто будь будет само сама сами сам самым мне https http www такое такой такую вовсе такого такие таки этак свою свое свои такая которые которое которую которая</textarea>
+											</div>
+											<div id="stopWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
+							      </div>
+							    </li>
+
+
+
+								</ul>
+
+								<div class="center-align">
+									<br>
+						      <a href="#!" onclick="summaryze_main();" class="btn-floating btn-large waves-effect waves-green white">
+						      <i class="large material-icons black-text" style="transform: rotate(270deg);">filter_list</i>
+						      саммари
+						    	</a>
+						    </div>
+
+							</div>
+
+
+		      </div>
+
+		    </li>
+  		</ul> <!-- /collapsible accordion -->
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -177,59 +236,17 @@
 
 			<div class="row">
 
-
-				<!-- ТАБ1 ДЛЯ ВВОДА ТЕКСТА -->
-				<div id="tab1" class="col s12">
-
-					<div class="col s12 NOThidden valign-wrapper relative">					
-						<input type="file" class="inputfile " id="inputfile">
-						<label for="inputfile" class="waves-effect waves-light btn">
-							<span>Загрузи текст из файла (.txt)</span>
-							<i class="material-icons right">cloud</i>
-						</label>
-						<div class="switch absolute pright" id="textTypeSwitch">
-					    <label>
-					      текст
-					      <input type="checkbox">
-					      <span class="lever"></span>
-					      чат
-					    </label>
-					  </div>
-					</div>
-					<br><br><br>
-			    <div class="col s12">
-			      <div class="card ">
-			        <div class="card-content no-overflow" >
-			          <div class="input-field">
-									<textarea id="input" placeholder="Место для гениального текста" class="materialize-textarea"></textarea>
-									<label for="input">Или скопируй и вставь текст который надо сократить</label>
-								</div>
-			        </div>
-			      </div>
-			    </div>				
-					<div class="center-align">
-						<a class="btn-large tab" onclick="summaryze_main(); document.getElementById('tabSelect2').click();">
-							Получить саммари
-							<i class="material-icons right">send</i>
-						</a>
-					</div>
-				</div> 
-				<!-- ТАБ1 ДЛЯ ВВОДА ТЕКСТА -->
-
-
-				<!-- ТАБ2 С САММАРИ -->		
-				<div id="tab2" class="col s12">
-					<div class="col s12">
-							<p class="range-field">
-					      <input type="range" min="0" max="100" value="5" id="rangeMessages" class="active"/>
-					      <label for="rangeMessages">Вес сообщений для включения в саммари (чем больше, тем большая значимость нужна и тем меньше сообений попадет в саммари)</label>
-					    </p>
-				  	</div>	  		
-				  	<div class="col s12">
-							<div id="messages"></div>
-					</div>
-				</div> 
-				<!-- ТАБ2 С САММАРИ -->
+				<!-- САММАРИ -->		
+				<div class="col s12">
+						<p class="range-field">
+				      <input type="range" min="0" max="100" value="5" id="rangeMessages" class="active"/>
+				      <label for="rangeMessages">Вес сообщений для включения в саммари (чем больше, тем большая значимость нужна и тем меньше сообений попадет в саммари)</label>
+				    </p>
+			  	</div>	  		
+			  	<div class="col s12">
+						<div id="messages"></div>
+				</div>
+				<!-- САММАРИ -->
 
 
 			</div> <!-- row -->
