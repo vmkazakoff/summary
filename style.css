@@ -3,7 +3,19 @@ Text sublimator - аutomatic text summarization
 Copyright © 2018 Kazakov Vladimir M. <vmkazakoff@gmail.com>
 MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE)
 */
-
+.preloader-background {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #eee;
+	position: fixed;
+	z-index: 1001;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+	opacity: .6;
+}
 .container {
 	width: 100%;
 }
@@ -179,4 +191,38 @@ textarea {
 }
 .noshadow {
 	box-shadow: none;
+}
+
+
+
+
+
+/* NEW */
+.sidenav li>a {
+  padding: 0 16px;
+}
+.sidenav label {
+  line-height: initial;
+}
+header, main, footer {
+    padding-left: 300px;
+}
+@media only screen and (max-width: 992px) {
+	header, main, footer {
+	    padding-left: 0;
+	}
+}
+
+.input-field .postfix {
+    right: 0;
+    color: #ddd;
+}
+.input-field .prefix.postfix ~ input,
+.input-field .prefix.postfix ~ textarea,
+.input-field .prefix.postfix ~ label,
+.input-field .prefix.postfix ~ .validate ~ label,
+.input-field .prefix.postfix ~ .helper-text,
+.input-field .prefix.postfix ~ .autocomplete-content {
+    margin-left: 0;
+    width: 100%;
 }
