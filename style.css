@@ -23,6 +23,10 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 	font-weight: 600;
 	font-size: 1.2rem !important;
 }
+.left.custom_logo {
+	padding-left: 1rem !important;
+}
+
 .navigation.bottom {
 	position: fixed;
     bottom: 0;
