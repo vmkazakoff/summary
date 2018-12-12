@@ -204,6 +204,10 @@ textarea {
 .sidenav label {
   line-height: initial;
 }
+.sidenav .thumb .value {
+  line-height: initial;
+}
+
 header, main, footer {
     padding-left: 300px;
 }
@@ -226,3 +230,6 @@ header, main, footer {
     margin-left: 0;
     width: 100%;
 }
+
+
+
