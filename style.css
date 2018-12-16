@@ -14,8 +14,9 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 	left: 0;
 	right: 0;
 	bottom: 0;	
-	opacity: .6;
+	opacity: .7;
 }
+
 .container {
 	width: 100%;
 }
@@ -77,7 +78,8 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 .scored .score {
 	color: #ddd;
 }
-blockquote.otherMessages {
+blockquote.otherMessages,
+.tohide blockquote {
     border-left: 5px solid #cfd8dc;
 }
 #showScoredMessagesLabel label,

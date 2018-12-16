@@ -31,17 +31,19 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 		-->
 		
 
-		<div id="preloader" class="preloader-background" style="display: none;">
-			<div class="preloader-wrapper big active">
-				<div class="spinner-layer spinner-red-only">
-					<div class="circle-clipper left">
-						<div class="circle"></div>
-					</div>
-					<div class="gap-patch">
-						<div class="circle"></div>
-					</div>
-					<div class="circle-clipper right">
-						<div class="circle"></div>
+		<div id="preloader">
+			<div class="preloader-background" >
+				<div class="preloader-wrapper big active">
+					<div class="spinner-layer spinner-red-only">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div>
+						<div class="gap-patch">
+							<div class="circle"></div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -49,7 +51,7 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 
 	  <nav class="hide-on-large-only">
 	    <div class="nav-wrapper">
-	      <a href="#" class="brand-logo left custom_logo">ТЕКСТОВЫЖИМАЛКА</a>
+	      <a href="#" class="brand-logo left custom_logo"><i class="large material-icons" style="transform: translate(2px, -2px) rotate(270deg);">filter_list</i>ТЕКСТОВЫЖИМАЛКА</a>
 	    </div>
 	  </nav>
 
@@ -58,7 +60,7 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 
 			  <nav class="">
 			    <div class="nav-wrapper">
-			      <a href="#" class="brand-logo left custom_logo">ТЕКСТОВЫЖИМАЛКА</a>
+			      <a href="#" class="brand-logo left custom_logo"><i class="large material-icons" style="transform: translate(2px, -2px) rotate(270deg);">filter_list</i>ТЕКСТОВЫЖИМАЛКА</a>
 			    </div>
 			  </nav>
 
@@ -107,10 +109,46 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 											<input type="text" id="autocompleteWords" class="autocomplete" placeholder="Поиск">
 									</div>
 									<div class="col s12 flow-text">
-										<div id="keyWords">
+										<div class="relative">
+									    <a class="waves-effect waves-teal btn-flat absolute pleft" onclick="rangeWords = rangeWords * 1 - 5; prepareKeyWordsAray();">
+									    	<i class="material-icons grey-text">remove</i>
+									    </a>
+									    <a class="waves-effect waves-teal btn-flat absolute pright" onclick="rangeWords = rangeWords * 1 + 5; prepareKeyWordsAray();">
+									    	<i class="material-icons grey-text">add</i>
+									    </a>
+									    <br>
+								    </div>
+								    <div id="keyWords" style="min-height: 150px;">
 											<span class="text-small">Сначала надо загрузить текст</span>
 										</div>
+										
 									</div>
+								</div>
+								<div class="divider"></div>
+							</div>
+						</li>
+
+						<li class="hidden">
+							<a class="collapsible-header">
+								<i class="material-icons">code</i>Все слова
+								<span id="allWordsCounter" class="new badge" data-badge-caption="">0</span>
+							</a>
+							<div class="collapsible-body">
+								<div id="allWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
+							</div>
+						</li>
+						<li class="">
+							<a class="collapsible-header">
+								<i class="material-icons">code</i>Cтоп-слова
+								<span id="stopWordsCounter" class="new badge red accent-1" data-badge-caption="">0</span>
+							</a>
+							<div class="collapsible-body">
+								<div class="divider transparent"></div>
+								<div class="row">
+									<div class="input-field col s12 hidden">
+										<textarea id="stopWordsList" class="materialize-textarea">как я ты мы вы они так что же а но в и о об про на под во или из когда их мы я они вы если еще за к на с co по это чат то та той для все всё вас не уже еще до вот его при у как бы чтобы либо вам где от есть надо над можно чем зачем чему кто нас наш нашу наша наши наше нам нами только меня вообще буду будут т д этот эту себе себя он ну тд тут тем там тех будто будь будет само сама сами сам самым мне https http www такое такой такую вовсе такого такие таки этак свою свое свои такая которые которое которую которая итак чтоб чтобы этакого этакая этакую этакии этому этом эти этот тот те тому том ваше вашу ваш ваша ваши вами тебя тебе был было была были быть быт того этого итого оттого итог нет да раз них</textarea>
+									</div>
+									<div id="stopWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
 								</div>
 								<div class="divider"></div>
 							</div>
@@ -118,7 +156,7 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 
 						<li>
 							<a class="collapsible-header waves-effect waves-teal">
-								<i class="material-icons">settings</i>Настройки ключевых слов
+								<i class="material-icons">settings</i>Настройки поиска слов
 							</a>
 							<div class="collapsible-body">
 								<div class="row">
@@ -167,42 +205,29 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 										</div>
 									</div>
 								</div>
-								<div class="divider"></div>
 							</div>
 						</li>
-						<li class="hidden">
-							<a class="collapsible-header">
-								<i class="material-icons">code</i>Все слова
-								<span id="allWordsCounter" class="new badge" data-badge-caption="">0</span>
-							</a>
-							<div class="collapsible-body">
-								<div id="allWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
-							</div>
-						</li>
-						<li class="hidden">
-							<a class="collapsible-header">
-								<i class="material-icons">code</i>Cтоп-слова
-								<span id="stopWordsCounter" class="new badge" data-badge-caption="">0</span>
-							</a>
-							<div class="collapsible-body">
-								<div class="input-field col s12" style="display:none;">
-									<textarea id="stopWordsList" class="materialize-textarea">как я ты мы вы они так что же а но в и о об про на под во или из когда их мы я они вы если еще за к на с co по это чат то та той для все всё вас не уже еще до вот его при у как бы чтобы либо вам где от есть надо над можно чем зачем чему кто нас наш нашу наша наши наше нам нами только меня вообще буду будут т д этот эту себе себя он ну тд тут тем там тех будто будь будет само сама сами сам самым мне https http www такое такой такую вовсе такого такие таки этак свою свое свои такая которые которое которую которая итак чтоб чтобы этакого этакая этакую этакии этому этом эти этот тот те тому том ваше вашу ваш ваша ваши вами тебя тебе был было была были быть быт того этого итого оттого итог</textarea>
+
+						<li>
+							<div class="divider"></div>
+							<div style="padding:16px;" class="range-field">
+								<div class="relative">
+									<button class="waves-effect waves-teal btn-flat absolute pleft" onclick="document.getElementById('rangeMessages').value--;">
+										<i class="material-icons grey-text">remove</i>
+									</button>
+									<button class="waves-effect waves-teal btn-flat absolute pright" onclick="document.getElementById('rangeMessages').value++;">
+										<i class="material-icons grey-text">add</i>
+									</button>
+									<input id="rangeMessages" class="" style="text-align: center;" value="5">
+									<label for="rangeMessages">Какой % ключевых слов должен быть в абзаце, для включения его в саммари.</label>
+
 								</div>
-								<div id="stopWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
 							</div>
 						</li>
-
-
-				<div style="padding: 0 16px;">
-					<p class="range-field">
-				      <input type="range" min="0" max="100" value="5" id="rangeMessages" class="active"/>
-				      <label for="rangeMessages">Вес сообщений для включения в саммари (чем больше, тем большая значимость нужна и тем меньше сообений попадет в саммари)</label>
-			    	</p>
-			  	</div>
 
 						<li >
 							<a class="waves-effect waves-red red lighten-5 red-text" onclick="summaryze_main();">
-								<i class="material-icons red-text" style="transform: rotate(270deg);">filter_list</i>Запустить!
+								<i class="material-icons red-text" style="transform: translate(2px, -2px) rotate(270deg);">filter_list</i>Запустить!
 								<span class="new badge red accent-1" data-badge-caption="" id="resultReadTime" style="margin-left: 10px;">0 минут</span>
 							</a>
 						</li>
@@ -219,7 +244,7 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 		<main>
 			<div class="fixed-action-btn">
 				<a href="#!" data-target="slide-out" class="sidenav-trigger btn-floating btn-large waves-effect waves-light red hide-on-large-only">
-					<i class="large material-icons" style="transform: rotate(270deg);">filter_list</i>
+					<i class="large material-icons" style="transform: translate(2px, 0px) rotate(270deg);">filter_list</i>
 				</a>
 			</div>
 			<div id="content">
@@ -249,10 +274,19 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 			</label>
 		</a>
     <div class="input-field">
-			<textarea id="input" placeholder="Место для гениального текста" class="materialize-textarea"></textarea>
+			<textarea id="input" placeholder="Место для гениального текста" class="materialize-textarea">
+Короче, короче и еще раз короче –  девиз современного контента в сети. При этом количество потребляемого текста растет, так что мы тут подумали и сделали текстовыжималку - новый формат электронного чтения, чтобы быстрее получать знания из нехудожественного материала.
+Представьте: перед вами экран или несколько экранов текста, содержание которого вам нужно понять. Часто в тексте много воды, а потому вы вовсе не хотите читать его целиком. Полное чтение вряд ли доставит вам много удовольствия. Напротив, водянистый текст может вызвать раздражение, так как он отнимает время. И чем глубже спрятана суть, тем больше текст бесит.
+Разумеется, подобные сервисы раньше уже запускались. Это и Summly, купленный компанией Yahoo за $30 млн., и Wavii, приобретенный за ту же сумму Гуглом, а еще сервис 2L2R для гуглхрома и разработки ребят из МФТИ 2Long2Read. К сожалению все эти сервисы или выкуплены и закрыты, или просто закрыты и интерес к ним пропал. У нашего проекта есть несколько существенных отличий. 
+Во-первых, аналоги, как правило, заточены на англоязычную аудиторию, и не обращают внимания на другие языки, а алгоритмы текстовыжималки уже сейчас неплохо обрабатывают текст на русском, кстати даже с опечатками и орфографическими ошибками. 
+Во-вторых, все другие алгоритмы работают на базе нейросетей, а это приводит к тому, что нет никаких точных и прозрачных метрик и понимания какое предложение является важным, а какое нет. А еще мы ещё уделяем серьёзное внимание простоте и удобству использования - минимум настроек для определения процента текста, который мы хотим получить как результат.
+Измерение важности текста строится на основании числа ключевых слов в абзаце. Каждое ключевые слово добавляет "вес" своему абзацу. Но самое сложное не в подсчете веса, а в том как выделить ключевые слова. Особенно с учетом морфологии русского языка. И тут работаею сразу несколько алгоритмов - фонетический анализ слов (который сравнивает слова по принципу "созвучности") и алгоритм n-gram, который после фонетического проверяет что совпадение оказалось не случайным.
+Мы выводим главное прямо на странице, и оставляем возможность обратиться к контексту, если это понадобится. Проанализировав много инструментов саммаризации мы заметили что многие оставляют только то, что им показалось важным. Т.к. никакой алгоритм не сможет сделать саммари без ошибок - мы решили что контекст неправильно прятать. Надо давать людям возможность осознанно делать выбор и дать чуть больше свободы читать «только важное или «важное и что было перед или после».
+Возможность плавной настройки количества выделяемых предложений и перевыделение их на лету перемещением ползунка позволяет лучше подбирать порог «важного/не важного» для текущего текста и для собственного стиля чтения.</textarea>
 		</div>
   </div>
   <div class="modal-footer">
+    <a href="#!" class="waves-effect waves-green btn-flat" onclick="document.getElementById('input').value = '';">Сбросить</a>
     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Готово</a>
   </div>
 </div>
@@ -261,7 +295,9 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 
 					<!--JavaScript at end of body for optimized loading-->
 					<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
 					<script src="summary.min.js"></script>
+
 					<script type="text/javascript">
 						M.AutoInit();
 
@@ -279,9 +315,12 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 					    var instances = M.Modal.init(elems, {});
 
 					  });
+
 						</script>
+
 						<!-- Global site tag (gtag.js) - Google Analytics -->
 						<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130244711-1"></script>
+
 						<script>
 						window.dataLayer = window.dataLayer || [];
 						function gtag(){dataLayer.push(arguments);}
