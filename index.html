@@ -23,31 +23,12 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
-	
-	<body class="not_flow-text grey lighten-5">
+
+	<body class="" id="body">
 		<!--git hub ribbon -->
 		<!--
 		<a href="https://github.com/vmkazakoff/summary" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#ddd; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 		-->
-		
-
-		<div id="preloader">
-			<div class="preloader-background" >
-				<div class="preloader-wrapper big active">
-					<div class="spinner-layer spinner-red-only">
-						<div class="circle-clipper left">
-							<div class="circle"></div>
-						</div>
-						<div class="gap-patch">
-							<div class="circle"></div>
-						</div>
-						<div class="circle-clipper right">
-							<div class="circle"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	  <nav class="hide-on-large-only">
 	    <div class="nav-wrapper">
@@ -64,8 +45,15 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 			    </div>
 			  </nav>
 
-				<li>
 					<ul class="collapsible"> <!-- MAIN collapsible -->
+
+						<li class="hidden">
+							<a href="#" class="waves-effect waves-teal" onclick="document.getElementById('body').classList.toggle('night_mode');;">
+									<i class="material-icons night_mode_on">brightness_3</i>
+									<i class="material-icons night_mode_off">brightness_5</i>
+									Ночной режим
+								</a>
+						</li>
 
 						<li>
 							<a class="collapsible-header waves-effect waves-teal">
@@ -88,80 +76,72 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 										</a>
 									</li>
 									<li>
+										<a href="#" class="subheader">
+											<i class="material-icons">link</i>
+											Ссылка на страницу (PRO)
+										</a>
+									</li>
+									<li>
 										<div class="divider"></div>
 									</li>
-								</ul>					
+								</ul>
 							</div>
 						</li>
 
 						<li>
 							<a class="collapsible-header waves-effect waves-teal">
-								<i class="material-icons">code</i>Ключевые слова
+								<i class="material-icons">star_border</i>Ключевые слова
 								<span id="keyWordsCounter" class="new badge red accent-1" data-badge-caption="">0 слов</span>
 							</a>
 							<div class="collapsible-body">
-								<div class="row">
-									<div class="input-field col s12" style="display:none;">
-										<textarea id="keyWordsList" class="materialize-textarea"></textarea>
-									</div>
-									<div class="input-field col s12">
+								<div class="row" style="margin-bottom:0">
+									<div class="input-field col s12" style="margin-bottom:0">
 											<i class="material-icons prefix postfix">search</i>
 											<input type="text" id="autocompleteWords" class="autocomplete" placeholder="Поиск">
 									</div>
-									<div class="col s12 flow-text">
-										<div class="relative">
-									    <a class="waves-effect waves-teal btn-flat absolute pleft" onclick="rangeWords = rangeWords * 1 - 5; prepareKeyWordsAray();">
-									    	<i class="material-icons grey-text">remove</i>
-									    </a>
-									    <a class="waves-effect waves-teal btn-flat absolute pright" onclick="rangeWords = rangeWords * 1 + 5; prepareKeyWordsAray();">
-									    	<i class="material-icons grey-text">add</i>
-									    </a>
-									    <br>
-								    </div>
-								    <div id="keyWords" style="min-height: 150px;">
-											<span class="text-small">Сначала надо загрузить текст</span>
-										</div>
-										
-									</div>
 								</div>
-								<div class="divider"></div>
+									<!--
+									<div class="relative">
+								    <a class="waves-effect waves-teal btn-flat absolute pleft" onclick="rangeWords = rangeWords * 1 - 5; if ( rangeWords <0 ) { rangeWords = 0; } prepareKeyWordsAray();">
+								    	<i class="material-icons grey-text">remove</i>
+								    </a>
+								    <a class="waves-effect waves-teal btn-flat absolute pright" onclick="rangeWords = rangeWords * 1 + 5; prepareKeyWordsAray();">
+								    	<i class="material-icons grey-text">add</i>
+								    </a>
+								    <br>
+							    </div>
+									-->
+							    <ul id="keyWords" style="min-height: 200px;" class="collection">
+										<li class="collection-item">Сначала надо загрузить текст</li>
+									</ul>
+								</div>
 							</div>
 						</li>
 
+						<!-- TODO: DELETE -->
 						<li class="hidden">
-							<a class="collapsible-header">
-								<i class="material-icons">code</i>Все слова
-								<span id="allWordsCounter" class="new badge" data-badge-caption="">0</span>
-							</a>
-							<div class="collapsible-body">
-								<div id="allWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
-							</div>
-						</li>
-						<li class="">
-							<a class="collapsible-header">
+							<a class="collapsible-header waves-effect waves-teal">
 								<i class="material-icons">code</i>Cтоп-слова
 								<span id="stopWordsCounter" class="new badge red accent-1" data-badge-caption="">0</span>
 							</a>
 							<div class="collapsible-body">
 								<div class="divider transparent"></div>
 								<div class="row">
-									<div class="input-field col s12 hidden">
-										<textarea id="stopWordsList" class="materialize-textarea">как я ты мы вы они так что же а но в и о об про на под во или из когда их мы я они вы если еще за к на с co по это чат то та той для все всё вас не уже еще до вот его при у как бы чтобы либо вам где от есть надо над можно чем зачем чему кто нас наш нашу наша наши наше нам нами только меня вообще буду будут т д этот эту себе себя он ну тд тут тем там тех будто будь будет само сама сами сам самым мне https http www такое такой такую вовсе такого такие таки этак свою свое свои такая которые которое которую которая итак чтоб чтобы этакого этакая этакую этакии этому этом эти этот тот те тому том ваше вашу ваш ваша ваши вами тебя тебе был было была были быть быт того этого итого оттого итог нет да раз них</textarea>
-									</div>
-									<div id="stopWords" class="col s12 flow-text"><span class="text-small">Пока тут пусто<span></div>
+									<div id="stopWords" class="col s12"><span class="text-small">Пока тут пусто<span></div>
 								</div>
 								<div class="divider"></div>
 							</div>
 						</li>
 
-						<li>
+						<!-- TODO: DELETE -->
+						<li  class="hidden">
 							<a class="collapsible-header waves-effect waves-teal">
 								<i class="material-icons">settings</i>Настройки поиска слов
 							</a>
 							<div class="collapsible-body">
 								<div class="row">
-									<div class="col s12 flow-text">
-										
+									<div class="col s12">
+
 										<div class="input-field col s12">
 											<p>
 												<label>
@@ -212,10 +192,10 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 							<div class="divider"></div>
 							<div style="padding:16px;" class="range-field">
 								<div class="relative">
-									<button class="waves-effect waves-teal btn-flat absolute pleft" onclick="document.getElementById('rangeMessages').value--;">
+									<button class="waves-effect waves-teal btn-flat absolute pleft" onclick="document.getElementById('rangeMessages').value--; toggleStartReady(false);">
 										<i class="material-icons grey-text">remove</i>
 									</button>
-									<button class="waves-effect waves-teal btn-flat absolute pright" onclick="document.getElementById('rangeMessages').value++;">
+									<button class="waves-effect waves-teal btn-flat absolute pright" onclick="document.getElementById('rangeMessages').value++; toggleStartReady(false);">
 										<i class="material-icons grey-text">add</i>
 									</button>
 									<input id="rangeMessages" class="" style="text-align: center;" value="5">
@@ -226,19 +206,22 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 						</li>
 
 						<li >
-							<a class="waves-effect waves-red red lighten-5 red-text" onclick="summaryze_main();">
-								<i class="material-icons red-text" style="transform: translate(2px, -2px) rotate(270deg);">filter_list</i>Запустить!
-								<span class="new badge red accent-1" data-badge-caption="" id="resultReadTime" style="margin-left: 10px;">0 минут</span>
+							<a class="waves-effect waves-red red lighten-5 red-text" onclick="summaryze_main();"  id="resultReadMessageStart">
+								<i class="material-icons red-text" style="transform: translate(2px, -2px) rotate(270deg);">filter_list</i>
+								<span>Запустить!</span>
+							</a>
+						</li>
+						<li >
+							<a class="teal lighten-5 teal-text"  id="resultReadMessageReady">
+								<i class="material-icons teal-text" style="transform: translate(2px, -2px) rotate(270deg);">filter_list</i>
+								<span>Готово!</span>
+								<span class="new badge teal darken-1" data-badge-caption="" id="resultReadTime" style="margin-left: 10px;">0 минут</span>
 							</a>
 						</li>
 
 					</ul> <!-- /MAIN collapsible -->
 				</li>
-				
 
-
-
-		    
 			</ul>
 		</header>
 		<main>
@@ -251,7 +234,31 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 				<div class="container">
 					<div class="row">
 						<!-- САММАРИ -->
-						<div class="col s12">
+						<div class="col s12" style="position: relative;">
+							<!-- КНОПКА С ПРИЗЫВОМ ОБНОВИТЬ -->
+							<div class="reload-background" id="resultReadMessageOnTextStart" >
+								<div class="reload btn-floating btn-large waves-effect waves-light red white-text" onclick="summaryze_main();">
+									<i class="material-icons" style="transform: translate(2px, -2px) rotate(270deg);">filter_list</i>
+								</div>
+							</div>
+							<!-- ПРЕЛОАДЕР -->
+							<div id="preloader">
+								<div class="preloader-background" >
+									<div class="preloader-wrapper big active">
+										<div class="spinner-layer spinner-red-only">
+											<div class="circle-clipper left">
+												<div class="circle"></div>
+											</div>
+											<div class="gap-patch">
+												<div class="circle"></div>
+											</div>
+											<div class="circle-clipper right">
+												<div class="circle"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div id="messages"></div>
 						</div>
 						<!-- САММАРИ -->
@@ -277,8 +284,8 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 			<textarea id="input" placeholder="Место для гениального текста" class="materialize-textarea">
 Короче, короче и еще раз короче –  девиз современного контента в сети. При этом количество потребляемого текста растет, так что мы тут подумали и сделали текстовыжималку - новый формат электронного чтения, чтобы быстрее получать знания из нехудожественного материала.
 Представьте: перед вами экран или несколько экранов текста, содержание которого вам нужно понять. Часто в тексте много воды, а потому вы вовсе не хотите читать его целиком. Полное чтение вряд ли доставит вам много удовольствия. Напротив, водянистый текст может вызвать раздражение, так как он отнимает время. И чем глубже спрятана суть, тем больше текст бесит.
-Разумеется, подобные сервисы раньше уже запускались. Это и Summly, купленный компанией Yahoo за $30 млн., и Wavii, приобретенный за ту же сумму Гуглом, а еще сервис 2L2R для гуглхрома и разработки ребят из МФТИ 2Long2Read. К сожалению все эти сервисы или выкуплены и закрыты, или просто закрыты и интерес к ним пропал. У нашего проекта есть несколько существенных отличий. 
-Во-первых, аналоги, как правило, заточены на англоязычную аудиторию, и не обращают внимания на другие языки, а алгоритмы текстовыжималки уже сейчас неплохо обрабатывают текст на русском, кстати даже с опечатками и орфографическими ошибками. 
+Разумеется, подобные сервисы раньше уже запускались. Это и Summly, купленный компанией Yahoo за $30 млн., и Wavii, приобретенный за ту же сумму Гуглом, а еще сервис 2L2R для гуглхрома и разработки ребят из МФТИ 2Long2Read. К сожалению все эти сервисы или выкуплены и закрыты, или просто закрыты и интерес к ним пропал. У нашего проекта есть несколько существенных отличий.
+Во-первых, аналоги, как правило, заточены на англоязычную аудиторию, и не обращают внимания на другие языки, а алгоритмы текстовыжималки уже сейчас неплохо обрабатывают текст на русском, кстати даже с опечатками и орфографическими ошибками.
 Во-вторых, все другие алгоритмы работают на базе нейросетей, а это приводит к тому, что нет никаких точных и прозрачных метрик и понимания какое предложение является важным, а какое нет. А еще мы ещё уделяем серьёзное внимание простоте и удобству использования - минимум настроек для определения процента текста, который мы хотим получить как результат.
 Измерение важности текста строится на основании числа ключевых слов в абзаце. Каждое ключевые слово добавляет "вес" своему абзацу. Но самое сложное не в подсчете веса, а в том как выделить ключевые слова. Особенно с учетом морфологии русского языка. И тут работаею сразу несколько алгоритмов - фонетический анализ слов (который сравнивает слова по принципу "созвучности") и алгоритм n-gram, который после фонетического проверяет что совпадение оказалось не случайным.
 Мы выводим главное прямо на странице, и оставляем возможность обратиться к контексту, если это понадобится. Проанализировав много инструментов саммаризации мы заметили что многие оставляют только то, что им показалось важным. Т.к. никакой алгоритм не сможет сделать саммари без ошибок - мы решили что контекст неправильно прятать. Надо давать людям возможность осознанно делать выбор и дать чуть больше свободы читать «только важное или «важное и что было перед или после».
@@ -296,11 +303,10 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 					<!--JavaScript at end of body for optimized loading-->
 					<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 
-					<script src="summary.min.js"></script>
+					<script src="summary.js"></script>
 
 					<script type="text/javascript">
 						M.AutoInit();
-
 						document.addEventListener('DOMContentLoaded', function() {
 
 							var elems = document.querySelectorAll('.sidenav');
@@ -315,7 +321,6 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 					    var instances = M.Modal.init(elems, {});
 
 					  });
-
 						</script>
 
 						<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -327,6 +332,6 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 						gtag('js', new Date());
 						gtag('config', 'UA-130244711-1');
 						</script>
-						
+
 					</body>
 				</html>

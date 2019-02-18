@@ -13,7 +13,7 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;	
+	bottom: 0;
 	opacity: .7;
 }
 
@@ -50,7 +50,7 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 	transition: all 0.2s;
 }
 .navigation.bottom .active .collapsible-header {
-	
+
 }
 .navigation.bottom .btn-floating {
     right: 15px;
@@ -131,6 +131,7 @@ blockquote.otherMessages,
     display: block;
     font-size: 10px;
     color: #ddd;
+		margin-top: 24px;
 }
 .readmore span {
 	background: #fff;
@@ -138,22 +139,105 @@ blockquote.otherMessages,
     border: 1px dotted;
     border-radius: 10px;
 }
-
-.stopWord {
-	color: #ddd;
+.reload {
+	position: fixed;
+	top: 50%;
+	left: calc(50% + 150px);
+	transform: translate(-50%,-50%);
+	border-radius: 100%;
+	padding: 10px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+	cursor: pointer;
+}
+.reload-background {
+	display: block;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 300;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+}
+.preloader-background {
+	left: 300px;
+}
+#messages {
+	min-height: 90%;
+}
+#messages .collapsible {
+	margin: .5rem -.5rem 1rem -0.5rem;
+}
+#messages .collapsible .collapsible-body {
+	padding: 0rem .5rem;
+}
+#messages .collapsible li.active i {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
+}
+#messages .modal-overlay,
+#messages .modal {
+	left: 300px;
+}
+#messages .modal-overlay {
+	background-color: #ddd;
+	opacity: 0.3;
 }
 
-/* скрываем пока не загрузится 
-.container {
-	display: none;
+@media only screen and (max-width: 992px) {
+	.reload {
+		left: 50%;
+	}
+	.reload-background,
+	.preloader-background {
+		left: 0;
+	}
+	#messages .modal-overlay,
+	#messages .modal {
+		left: 0;
+	}
 }
-.preloader-wrapper.active {
-	z-index: 999;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+
+.collapsible-body .switch label {
+	height: 48px;
+  line-height: 48px;
 }
-*/
+
+.input-field .prefix.postfix ~ .autocomplete-content {
+	max-height: 200px !important;
+}
+
+.dropdown-content li>a, .dropdown-content li>span,
+#keywords .collection-item {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: default;
+}
+#keywords .collection-item.reveal {
+	overflow: unset;
+	text-overflow: unset;
+	white-space: unset;
+}
+
+#keywords.collection .collection-item.avatar i.circle {
+	width: 24px;
+  height: 24px;
+	left: unset;
+	right: 10px;
+	font-size: 16px;
+  line-height: 24px;
+}
+#keywords.collection .collection-item.avatar i.circle:hover {
+	background: #F44336 !important;
+}
+#keywords.collection .collection-item.avatar {
+	min-height: 0;
+  padding: 10px 45px 10px 10px;
+}
 
 .chip .chip-counter {
     float: left;
@@ -186,7 +270,7 @@ blockquote.otherMessages,
 }
 
 textarea {
-    overflow-y: scroll !important; 
+    overflow-y: scroll !important;
     height: 14rem !important;
 }
 .noborder {
@@ -199,7 +283,37 @@ textarea {
 	box-shadow: none;
 }
 
-
+body {
+	background-color: #fafafa;
+}
+body:not(.night_mode) .night_mode_off{
+	display: none;
+}
+body.night_mode .night_mode_on{
+	display: none;
+}
+body.night_mode .modal,
+body.night_mode .modal-footer,
+body.night_mode .btn-flat,
+body.night_mode #keywords.collection .collection-item.avatar i.circle,
+body.night_mode .readmore span,
+body.night_mode {
+	background-color: #222 !important;
+	color: #eee  !important;
+}
+body.night_mode .sidenav .collapsible-body,
+body.night_mode .sidenav.fixed .collapsible-body,
+body.night_mode .collection .collection-item,
+body.night_mode .sidenav {
+	background-color: #333;
+}
+body.night_mode .sidenav li>a>i,
+body.night_mode .sidenav li>a>[class^="mdi-"],
+body.night_mode .sidenav li>a li>a>[class*="mdi-"],
+body.night_mode .sidenav li>a>i.material-icons,
+body.night_mode .sidenav li>a {
+	color: #eee;
+}
 
 
 
@@ -236,6 +350,3 @@ header, main, footer {
     margin-left: 0;
     width: 100%;
 }
-
-
-
