@@ -151,10 +151,10 @@ blockquote.otherMessages,
 }
 .reload-background {
 	display: block;
+	z-index: 10;
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 1001;
   top: 0;
   left: 300;
   right: 0;
