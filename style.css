@@ -3,6 +3,17 @@ Text sublimator - аutomatic text summarization
 Copyright © 2018 Kazakov Vladimir M. <vmkazakoff@gmail.com>
 MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE)
 */
+
+/*
+header, main, footer {
+    padding-left: 300px;
+}
+*/
+
+body {
+	margin-bottom: 85px;
+}
+
 .preloader-background {
 	display: flex;
 	align-items: center;
@@ -17,9 +28,6 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 	opacity: .7;
 }
 
-.container {
-	width: 100%;
-}
 .custom_logo {
 	font-weight: 600;
 	font-size: 1.2rem !important;
@@ -78,10 +86,7 @@ MIT License (https://raw.githubusercontent.com/vmkazakoff/summary/master/LICENSE
 .scored .score {
 	color: #ddd;
 }
-blockquote.otherMessages,
-.tohide blockquote {
-    border-left: 5px solid #cfd8dc;
-}
+
 #showScoredMessagesLabel label,
 #showOtherMessagesLabel label {
 	font-size: 1rem;
@@ -107,12 +112,18 @@ blockquote.otherMessages,
 .text-small {
 	font-size: .8rem;
 }
-.scale-transition-ease {
-    transition: transform 0.3s ease-in-out !important;
+
+.progress-container {
+	position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 3px;
 }
-.scale-transition.scale-out {
-	height: 0px;
-	overflow: hidden;
+
+.progress-bar {
+  height: 3px;
+  width: 0%;
 }
 
 .readmore:after {
@@ -127,11 +138,12 @@ blockquote.otherMessages,
 }
 .readmore {
     position: relative;
+    top:-7px;
     text-align: center;
     display: block;
     font-size: 10px;
     color: #ddd;
-		margin-top: 24px;
+	margin-top: 0px;
 }
 .readmore span {
 	background: #fff;
@@ -139,10 +151,11 @@ blockquote.otherMessages,
     border: 1px dotted;
     border-radius: 10px;
 }
+
 .reload {
 	position: fixed;
 	top: 50%;
-	left: calc(50% + 150px);
+	left: 50%;
 	transform: translate(-50%,-50%);
 	border-radius: 100%;
 	padding: 10px;
@@ -161,45 +174,91 @@ blockquote.otherMessages,
   bottom: 0;
   opacity: 1;
 }
-.preloader-background {
-	left: 300px;
+
+.menu-button {
+  position: fixed;
+	white-space: nowrap;
+  padding: 0 2rem;
+  border-radius: 2rem;
+  bottom: 23px;
+  right: 50%;
+  height: 56px;
+  line-height: 56px;
+  transform: translate(50%,0);
+  z-index: 997;
 }
+
+.menu-button .menu-button-settings {
+	transition: opacity .5s, transform .3s;
+  transform: translate(-2px, 6px) rotate(-180deg) scale(0.5);
+	position: relative;
+  right: 30px;
+	margin-right: -25px;
+  opacity: 0;
+}
+.menu-button .menu-button-logo {
+	transform: translate(-2px, 6px) rotate(270deg) scale(1);
+  transition: opacity .5s;
+}
+#slide-out[style="transform: translateX(0%);"]+.menu-button .menu-button-settings,
+.menu-button:focus .menu-button-settings,
+.menu-button:hover .menu-button-settings {
+	transform: translate(-2px, 6px) rotate(0deg) scale(1);
+  opacity: 1;
+}
+#slide-out[style="transform: translateX(0%);"]+.menu-button .menu-button-logo,
+.menu-button:focus .menu-button-logo,
+.menu-button:hover .menu-button-logo {
+	transform: translate(-2px, 6px) rotate(360deg) scale(0.5);
+	transition: opacity .3s, transform .3s;
+  opacity: 0;
+}
+
+
 #messages {
+	margin-top: 1em;
 	min-height: 90%;
 }
+#messages p {
+	margin: 1em auto;
+	padding: 0 1em;
+	max-width: 800px;
+}
+
+
 #messages .collapsible {
-	margin: .5rem -.5rem 1rem -0.5rem;
+	margin: 0 0 20px 0;
+	border-top: none;
+  border-right: none;
+  border-left: none;
+	box-shadow: none;
+}
+#messages  .collapsible-header {
+	background-color: transparent;
+  border-bottom: none;
+  text-align: center;
+	display: block;
+	margin-bottom: -10px;
+	padding: 0;
 }
 #messages .collapsible .collapsible-body {
-	padding: 0rem .5rem;
+	padding: 0;
+	border-top: 1px dotted #ddd;
+	border-bottom: 1px dotted #ddd;
+	max-height: 50%;
+  overflow: auto;
 }
 #messages .collapsible li.active i {
   -ms-transform: rotate(180deg); /* IE 9 */
   -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
   transform: rotate(180deg);
 }
-#messages .modal-overlay,
-#messages .modal {
-	left: 300px;
-}
+
 #messages .modal-overlay {
 	background-color: #ddd;
 	opacity: 0.3;
 }
 
-@media only screen and (max-width: 992px) {
-	.reload {
-		left: 50%;
-	}
-	.reload-background,
-	.preloader-background {
-		left: 0;
-	}
-	#messages .modal-overlay,
-	#messages .modal {
-		left: 0;
-	}
-}
 
 .collapsible-body .switch label {
 	height: 48px;
@@ -328,14 +387,7 @@ body.night_mode .sidenav li>a {
   line-height: initial;
 }
 
-header, main, footer {
-    padding-left: 300px;
-}
-@media only screen and (max-width: 992px) {
-	header, main, footer {
-	    padding-left: 0;
-	}
-}
+
 
 .input-field .postfix {
     right: 0;
